@@ -17,6 +17,14 @@ class StudentSerializer(serializers.HyperlinkedModelSerializer):
                 raise serializers.ValidationError('Maximum number of student reached')
         student = Student.objects.create( **data)
         return student
+    
+    def update(self, instance, data):
+        """check for max students before assigning a school to student in update"""
+        if 'school' in data:
+            school= data['school']
+            if len(school.students.all()) >= school.max_students:
+                raise serializers.ValidationError('Maximum number of student reached')
+        return instance
 
 class SchoolSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
