@@ -20,10 +20,21 @@ from rest_framework_nested import routers
 from school import views
 
 router = routers.DefaultRouter()
-router.register(r'students', views.StudentViewSet)
-router.register(r'schools', views.SchoolViewSet)
-school_router = routers.NestedDefaultRouter(router,r'schools',lookup='school')
+
+router.register(
+    r'students', 
+    views.StudentViewSet)
+
+router.register(
+    r'schools', 
+    views.SchoolViewSet)
+
+school_router = routers.NestedDefaultRouter(
+    router,r'schools',
+    lookup='school')
+
 school_router.register(r'students', views.StudentBySchoolVeiwSet,basename='school-students')
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),

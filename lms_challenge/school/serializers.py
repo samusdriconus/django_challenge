@@ -10,6 +10,7 @@ class StudentSerializer(serializers.HyperlinkedModelSerializer):
         }
 
     def create(self,data):
+        """check for max students before assigning a school to student"""
         if 'school' in data:
             school = data['school']
             if len(school.students.all()) >= school.max_students:

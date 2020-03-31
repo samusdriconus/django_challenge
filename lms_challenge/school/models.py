@@ -3,6 +3,8 @@ import uuid
 # Create your models here.
 
 def generate_uniqe_id():
+    """generate a unique identification"""
+
     key = uuid.uuid4().hex[:16].upper()
     return key
 
