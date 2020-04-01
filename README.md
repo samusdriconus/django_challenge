@@ -6,3 +6,6 @@ Step 3 : 1 hour and 30 mins
 
 
 link to heroku app : https://djangochallenge.herokuapp.com/
+
+user : admin
+pwd : admin
